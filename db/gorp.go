@@ -1,5 +1,5 @@
 package db
-
+//
 //import (
 //	"database/sql"
 //	"fmt"
@@ -9,7 +9,7 @@ package db
 //	"os"
 //)
 //
-//func InitDb() *gorp.DbMap {
+//func InitDbMap() *gorp.DbMap {
 //	var datasource string
 //	params := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 //

@@ -7,8 +7,7 @@ import (
 	"log"
 )
 
-func InitDb() *dbx.DB {
-	log.Println("InitDb called.")
+func InitDbx() *dbx.DB {
 	var datasource string
 	params := "?charset=utf8&parseTime=true&loc=Asia%2FTokyo"
 	datasource = fmt.Sprintf("root:root@tcp(localhost:3306)/demo%s", params)
