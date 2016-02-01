@@ -11,6 +11,7 @@ import (
 type yourHobby struct {
 	Name  string `db:"pname"`
 	Hobby string `db:"hname"`
+	Level string `db:"level"`
 }
 
 type responseJson struct {
@@ -20,6 +21,7 @@ type responseJson struct {
 
 type hobby struct {
 	Name string `json:"name"`
+	Level string `json:"level"`
 }
 
 func Hobbies(c *gin.Context) {
@@ -35,7 +37,8 @@ func selectHobby(name string) []yourHobby {
 	defer db.Close()
 
 	var yhs []yourHobby
-	q := db.NewQuery("SELECT [[persons.name]] AS [[pname]], [[hobbies.name]] AS [[hname]] " +
+	q := db.NewQuery(
+		"SELECT [[persons.name]] AS [[pname]], [[hobbies.name]] AS [[hname]], [[hobbies.level]] " +
 		"FROM {{persons}}, {{hobbies}} " +
 		"WHERE [[persons.id]] = [[hobbies.person_id]] AND [[persons.name]] = {:name}")
 	q.Bind(dbx.Params{"name": name})
@@ -52,6 +55,7 @@ func genJson(data []yourHobby) string {
 	for i := range data {
 		var h hobby
 		h.Name = data[i].Hobby
+		h.Level = data[i].Level
 		hobbies = append(hobbies, h)
 	}
 
